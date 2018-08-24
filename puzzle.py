@@ -38,12 +38,11 @@ class GameGrid(Frame):
                 cell = Frame(background, bg=c.BACKGROUND_COLOR_CELL_EMPTY,
                              width=c.SIZE / c.GRID_LEN,
                              height=c.SIZE / c.GRID_LEN)
-
                 cell.grid(row=i, column=j, padx=c.GRID_PADDING,
                           pady=c.GRID_PADDING)
                 t = Label(master=cell, text="",
                           bg=c.BACKGROUND_COLOR_CELL_EMPTY,
-                          justify=CENTER, font=c.FONT, width=4, height=2)
+                          justify=CENTER, font=c.FONT, width=5, height=2)
                 t.grid()
                 grid_row.append(t)
 
@@ -53,7 +52,9 @@ class GameGrid(Frame):
         return random.randint(0, c.GRID_LEN - 1)
 
     def init_matrix(self):
-        self.matrix = logic.new_game(4)
+        # self.matrix = logic.new_game(4)
+        self.matrix = [[2, 0, 0, 0], [0, 0, 0, 0],
+                       [4, 0, 0, 0], [65536, 8192, 8192, 8192]]
         self.history_matrixs = list()
         self.matrix = logic.add_two(self.matrix)
         self.matrix = logic.add_two(self.matrix)
