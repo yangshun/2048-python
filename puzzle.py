@@ -52,9 +52,7 @@ class GameGrid(Frame):
         return random.randint(0, c.GRID_LEN - 1)
 
     def init_matrix(self):
-        # self.matrix = logic.new_game(4)
-        self.matrix = [[2, 0, 0, 0], [0, 0, 0, 0],
-                       [4, 0, 0, 0], [65536, 8192, 8192, 8192]]
+        self.matrix = logic.new_game(4)
         self.history_matrixs = list()
         self.matrix = logic.add_two(self.matrix)
         self.matrix = logic.add_two(self.matrix)
@@ -77,7 +75,6 @@ class GameGrid(Frame):
         if key == c.KEY_BACK and len(self.history_matrixs) > 1:
             self.matrix = self.history_matrixs.pop()
             self.update_grid_cells()
-            print(self.matrix)
             print('back on step total step:', len(self.history_matrixs))
         elif key in self.commands:
             self.matrix, done = self.commands[repr(event.char)](self.matrix)
