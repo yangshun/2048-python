@@ -18,7 +18,9 @@ class GameGrid(Frame):
                          c.KEY_LEFT: logic.left, c.KEY_RIGHT: logic.right,
                          c.KEY_UP_ALT: logic.up, c.KEY_DOWN_ALT: logic.down,
                          c.KEY_LEFT_ALT: logic.left,
-                         c.KEY_RIGHT_ALT: logic.right}
+                         c.KEY_RIGHT_ALT: logic.right,
+						 c.KEY_H: logic.left, c.KEY_L: logic.right,
+						 c.KEY_K: logic.up, c.KEY_J: logic.down}
 
         self.grid_cells = []
         self.init_grid()
