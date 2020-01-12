@@ -15,3 +15,4 @@ Contributors:
 
 - [Tay Yang Shun](http://github.com/yangshun)
 - [Emmanuel Goh](http://github.com/emman27)
+[![Run on Repl.it](https://repl.it/badge/github/yangshun/2048-python)](https://repl.it/github/yangshun/2048-python)
