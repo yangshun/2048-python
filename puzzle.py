@@ -55,8 +55,8 @@ class GameGrid(Frame):
     def init_matrix(self):
         self.matrix = logic.new_game(4)
         self.history_matrixs = list()
-        self.matrix = logic.add_two(self.matrix)
-        self.matrix = logic.add_two(self.matrix)
+        self.matrix = logic.add_new_item(self.matrix)
+        self.matrix = logic.add_new_item(self.matrix)
 
     def update_grid_cells(self):
         for i in range(c.GRID_LEN):
@@ -80,7 +80,7 @@ class GameGrid(Frame):
         elif key in self.commands:
             self.matrix, done = self.commands[repr(event.char)](self.matrix)
             if done:
-                self.matrix = logic.add_two(self.matrix)
+                self.matrix = logic.add_new_item(self.matrix)
                 # record last move
                 self.history_matrixs.append(self.matrix)
                 self.update_grid_cells()
