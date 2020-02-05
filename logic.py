@@ -40,7 +40,9 @@ def add_new_item(mat):
     while(mat[a][b] != 0):
         a = random.randint(0, len(mat)-1)
         b = random.randint(0, len(mat)-1)
-    mat[a][b] = 2
+    #  choose what to add: 2 or 4
+    probability_of_2 = 0.9
+    mat[a][b] = 2 if random.random() < probability_of_2 else 4
     return mat
 
 ###########
