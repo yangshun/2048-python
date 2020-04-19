@@ -53,7 +53,7 @@ class GameGrid(Frame):
         return random.randint(0, c.GRID_LEN - 1)
 
     def init_matrix(self):
-        self.matrix = logic.new_game(4)
+        self.matrix = logic.new_game(c.GRID_LEN)
         self.history_matrixs = list()
         self.matrix = logic.add_two(self.matrix)
         self.matrix = logic.add_two(self.matrix)
