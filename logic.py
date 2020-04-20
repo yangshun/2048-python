@@ -6,6 +6,7 @@
 # Note that written answers are commented out to allow us to run your
 # code easily while grading your problem set.
 import random
+import constants as c
 
 #######
 #Task 1a#
@@ -132,11 +133,16 @@ def transpose(mat):
 
 
 def cover_up(mat):
-    new = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    new = []
+    for j in range(c.GRID_LEN):
+        partial_new = []
+        for i in range(c.GRID_LEN):
+            partial_new.append(0)
+        new.append(partial_new)
     done = False
-    for i in range(4):
+    for i in range(c.GRID_LEN):
         count = 0
-        for j in range(4):
+        for j in range(c.GRID_LEN):
             if mat[i][j] != 0:
                 new[i][count] = mat[i][j]
                 if j != count:
@@ -147,8 +153,8 @@ def cover_up(mat):
 
 def merge(mat):
     done = False
-    for i in range(4):
-        for j in range(3):
+    for i in range(c.GRID_LEN):
+        for j in range(c.GRID_LEN-1):
             if mat[i][j] == mat[i][j+1] and mat[i][j] != 0:
                 mat[i][j] *= 2
                 mat[i][j+1] = 0
