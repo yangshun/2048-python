@@ -1,10 +1,14 @@
-2048-python
+2048-python-patches
 ===========
-
-Based on the popular game [2048](https://github.com/gabrielecirulli/2048) by Gabriele Cirulli. The game's objective is to slide numbered tiles on a grid to combine them to create a tile with the number 2048. Here is a Python version that uses TKinter! 
+A fork of [2048-python](https://github.com/yangshun/2048-python) by yangshun. The game uses the original 2048-python code as a base however I have altered the code to make it a more enjoyable experience. 
 
 ![screenshot](img/screenshot.png)
 
+Required:
+TKinter 
+
+Note:
+The game has only been tested on Python 3.8 and on Linux.
 To start the game, run:
     
     $ python3 puzzle.py
