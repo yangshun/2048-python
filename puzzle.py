@@ -1,9 +1,9 @@
 import random
-from tkinter import Frame, Label, CENTER
+import tkinter as tk
+from tkinter import Frame, Label, CENTER, messagebox
 
 import logic
 import constants as c
-
 
 class GameGrid(Frame):
     def __init__(self):
@@ -16,8 +16,8 @@ class GameGrid(Frame):
         # self.gamelogic = gamelogic
         self.commands = {c.KEY_UP: logic.up, c.KEY_DOWN: logic.down,
                          c.KEY_LEFT: logic.left, c.KEY_RIGHT: logic.right,
-                         c.KEY_UP_ALT: logic.up, c.KEY_DOWN_ALT: logic.down,
-                         c.KEY_LEFT_ALT: logic.left, c.KEY_RIGHT_ALT: logic.right,
+                         # c.KEY_UP_ALT: logic.up, c.KEY_DOWN_ALT: logic.down,
+                         # c.KEY_LEFT_ALT: logic.left, c.KEY_RIGHT_ALT: logic.right,
                          c.KEY_H: logic.left, c.KEY_L: logic.right,
                          c.KEY_K: logic.up, c.KEY_J: logic.down}
         
@@ -25,7 +25,7 @@ class GameGrid(Frame):
         self.init_grid()
         self.init_matrix()
         self.update_grid_cells()
-
+        
         self.mainloop()
 
     def init_grid(self):
@@ -70,7 +70,6 @@ class GameGrid(Frame):
                         new_number), bg=c.BACKGROUND_COLOR_DICT[new_number],
                         fg=c.CELL_COLOR_DICT[new_number])
         self.update_idletasks()
-
     def key_down(self, event):
         key = repr(event.char)
         if key == c.KEY_BACK and len(self.history_matrixs) > 1:
@@ -85,17 +84,14 @@ class GameGrid(Frame):
                 self.history_matrixs.append(self.matrix)
                 self.update_grid_cells()
                 done = False
-                if logic.game_state(self.matrix) == 'win':
-                    self.grid_cells[1][1].configure(
-                        text="You", bg=c.BACKGROUND_COLOR_CELL_EMPTY)
-                    self.grid_cells[1][2].configure(
-                        text="Win!", bg=c.BACKGROUND_COLOR_CELL_EMPTY)
                 if logic.game_state(self.matrix) == 'lose':
-                    self.grid_cells[1][1].configure(
-                        text="You", bg=c.BACKGROUND_COLOR_CELL_EMPTY)
-                    self.grid_cells[1][2].configure(
-                        text="Lose!", bg=c.BACKGROUND_COLOR_CELL_EMPTY)
-
+                    retry = messagebox.askyesno("You Lost!", "Do you want to reset the game?")
+                    if retry == True:
+                        print('New Game!')
+                        self.destroy()
+                        GameGrid()
+                    if retry == False:
+                        exit()
     def generate_next(self):
         index = (self.gen(), self.gen())
         while self.matrix[index[0]][index[1]] != 0:
