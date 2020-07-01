@@ -19,5 +19,5 @@ Contributors:
 
 - [Tay Yang Shun](http://github.com/yangshun)
 - [Emmanuel Goh](http://github.com/emman27)
-- [Emmanuel Goh](http://github.com/HostGrady)
+- [HostGrady](http://github.com/HostGrady)
 
