@@ -4,6 +4,7 @@ from tkinter import Frame, Label, CENTER, messagebox
 
 import logic
 import constants as c
+import config
 
 class GameGrid(Frame):
     def __init__(self):
@@ -15,11 +16,7 @@ class GameGrid(Frame):
 
         # self.gamelogic = gamelogic
         self.commands = {c.KEY_UP: logic.up, c.KEY_DOWN: logic.down,
-                         c.KEY_LEFT: logic.left, c.KEY_RIGHT: logic.right,
-                         # c.KEY_UP_ALT: logic.up, c.KEY_DOWN_ALT: logic.down,
-                         # c.KEY_LEFT_ALT: logic.left, c.KEY_RIGHT_ALT: logic.right,
-                         c.KEY_H: logic.left, c.KEY_L: logic.right,
-                         c.KEY_K: logic.up, c.KEY_J: logic.down}
+                         c.KEY_LEFT: logic.left, c.KEY_RIGHT: logic.right}
         
         self.grid_cells = []
         self.init_grid()

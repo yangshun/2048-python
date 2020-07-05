@@ -1,3 +1,4 @@
+import config
 SIZE = 400
 GRID_LEN = 4
 GRID_PADDING = 10
@@ -22,19 +23,43 @@ CELL_COLOR_DICT = {2: "#776e65", 4: "#776e65", 8: "#f9f6f2", 16: "#f9f6f2",
                    32768: "#776e65", 65536: "#f9f6f2", }
 
 FONT = ("Verdana", 40, "bold")
+# default controls
+if config.controls() == 'default':
+	KEY_UP = "'w'"
+	KEY_DOWN = "'s'"
+	KEY_LEFT = "'a'"
+	KEY_RIGHT = "'d'"
+	KEY_BACK = "'b'"
+elif config.controls() == 'azerty':
+	KEY_UP = "'z'"
+	KEY_DOWN = "'s'"
+	KEY_LEFT = "'q'"
+	KEY_RIGHT = "'d'"
+	KEY_BACK = "'b'"
+# vim controls
+elif config.controls() == 'vim':
+	KEY_UP = "'k'"
+	KEY_DOWN = "'j'"
+	KEY_LEFT = "'h'"
+	KEY_RIGHT = "'l'"
+	KEY_BACK = "'b'"
+# why
+elif config.controls() == 'why':
+	KEY_UP = "'1'"
+	KEY_DOWN = "'.'"
+	KEY_LEFT = "'='"
+	KEY_RIGHT = "'7'"
+	KEY_BACK = "'b'"
+# elif config.controls() == 'your control name here'
+	# KEY_UP = "'key1'"
+	# KEY_UP = "'key2'"
+	# KEY_UP = "'key3'"
+	# KEY_UP = "'key4'"
+# will use default if nothing is in the return value of controls
+else:
+	KEY_UP = "'w'"
+	KEY_DOWN = "'s'"
+	KEY_LEFT = "'a'"
+	KEY_RIGHT = "'d'"
+	KEY_BACK = "'b'"
 
-KEY_UP_ALT = "\'\\uf700\'"
-KEY_DOWN_ALT = "\'\\uf701\'"
-KEY_LEFT_ALT = "\'\\uf702\'"
-KEY_RIGHT_ALT = "\'\\uf703\'"
-
-KEY_UP = "'w'"
-KEY_DOWN = "'s'"
-KEY_LEFT = "'a'"
-KEY_RIGHT = "'d'"
-KEY_BACK = "'b'"
-
-KEY_J = "'j'"
-KEY_K = "'k'"
-KEY_L = "'l'"
-KEY_H = "'h'"
