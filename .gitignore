@@ -3,3 +3,6 @@
 
 # python
 *.pyc
+
+# config
+config.json
