@@ -23,43 +23,32 @@ CELL_COLOR_DICT = {2: "#776e65", 4: "#776e65", 8: "#f9f6f2", 16: "#f9f6f2",
                    32768: "#776e65", 65536: "#f9f6f2", }
 
 FONT = ("Verdana", 40, "bold")
-# default controls
-if config.controls() == 'default':
-	KEY_UP = "'w'"
-	KEY_DOWN = "'s'"
-	KEY_LEFT = "'a'"
-	KEY_RIGHT = "'d'"
+
+# controls
+presets = {
+	"default": "wasd",
+	"azerty": "zqsd",
+	"qwerty": "wasd",
+	"vim": "khjl"
+}
+
+keylayout = config.get_config_option("keylayout")
+
+if keylayout in presets.keys():
+	KEY_UP = "'"+presets[keylayout][0]+"'"
+	KEY_DOWN = "'"+presets[keylayout][2]+"'"
+	KEY_LEFT = "'"+presets[keylayout][1]+"'"
+	KEY_RIGHT = "'"+presets[keylayout][3]+"'"
+elif len(keylayout) == 4:
+	KEY_UP = "'"+keylayout[0]+"'"
+	KEY_DOWN = "'"+keylayout[2]+"'"
+	KEY_LEFT = "'"+keylayout[1]+"'"
+	KEY_RIGHT = "'"+keylayout[3]+"'"
 	KEY_BACK = "'b'"
-elif config.controls() == 'azerty':
-	KEY_UP = "'z'"
-	KEY_DOWN = "'s'"
-	KEY_LEFT = "'q'"
-	KEY_RIGHT = "'d'"
-	KEY_BACK = "'b'"
-# vim controls
-elif config.controls() == 'vim':
-	KEY_UP = "'k'"
-	KEY_DOWN = "'j'"
-	KEY_LEFT = "'h'"
-	KEY_RIGHT = "'l'"
-	KEY_BACK = "'b'"
-# why
-elif config.controls() == 'why':
-	KEY_UP = "'1'"
-	KEY_DOWN = "'.'"
-	KEY_LEFT = "'='"
-	KEY_RIGHT = "'7'"
-	KEY_BACK = "'b'"
-# elif config.controls() == 'your control name here'
-	# KEY_UP = "'key1'"
-	# KEY_UP = "'key2'"
-	# KEY_UP = "'key3'"
-	# KEY_UP = "'key4'"
-# will use default if nothing is in the return value of controls
 else:
 	KEY_UP = "'w'"
 	KEY_DOWN = "'s'"
 	KEY_LEFT = "'a'"
 	KEY_RIGHT = "'d'"
-	KEY_BACK = "'b'"
 
+KEY_BACK = "'b'"
