@@ -1,3 +1,4 @@
+import config
 SIZE = 400
 GRID_LEN = 4
 GRID_PADDING = 10
@@ -23,18 +24,31 @@ CELL_COLOR_DICT = {2: "#776e65", 4: "#776e65", 8: "#f9f6f2", 16: "#f9f6f2",
 
 FONT = ("Verdana", 40, "bold")
 
-KEY_UP_ALT = "\'\\uf700\'"
-KEY_DOWN_ALT = "\'\\uf701\'"
-KEY_LEFT_ALT = "\'\\uf702\'"
-KEY_RIGHT_ALT = "\'\\uf703\'"
+# controls
+presets = {
+	"default": "wasd",
+	"azerty": "zqsd",
+	"qwerty": "wasd",
+	"vim": "khjl"
+}
 
-KEY_UP = "'w'"
-KEY_DOWN = "'s'"
-KEY_LEFT = "'a'"
-KEY_RIGHT = "'d'"
+keylayout = config.get_config_option("keylayout")
+
+if keylayout in presets.keys():
+	KEY_UP = "'"+presets[keylayout][0]+"'"
+	KEY_DOWN = "'"+presets[keylayout][2]+"'"
+	KEY_LEFT = "'"+presets[keylayout][1]+"'"
+	KEY_RIGHT = "'"+presets[keylayout][3]+"'"
+elif len(keylayout) == 4:
+	KEY_UP = "'"+keylayout[0]+"'"
+	KEY_DOWN = "'"+keylayout[2]+"'"
+	KEY_LEFT = "'"+keylayout[1]+"'"
+	KEY_RIGHT = "'"+keylayout[3]+"'"
+	KEY_BACK = "'b'"
+else:
+	KEY_UP = "'w'"
+	KEY_DOWN = "'s'"
+	KEY_LEFT = "'a'"
+	KEY_RIGHT = "'d'"
+
 KEY_BACK = "'b'"
-
-KEY_J = "'j'"
-KEY_K = "'k'"
-KEY_L = "'l'"
-KEY_H = "'h'"
