@@ -102,5 +102,5 @@ class GameGrid(Frame):
             index = (self.gen(), self.gen())
         self.matrix[index[0]][index[1]] = 2
 
-
+#__main__
 gamegrid = GameGrid()
