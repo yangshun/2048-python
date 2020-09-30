@@ -1,5 +1,5 @@
 2048-python
-===========
+=============================================
 
 [![Run on Repl.it](https://repl.it/badge/github/yangshun/2048-python)](https://repl.it/github/yangshun/2048-python)
 
@@ -13,7 +13,7 @@ To start the game, run:
 
 
 Contributors:
-==
+=============================================
 
 - [Yanghun Tay](http://github.com/yangshun)
 - [Emmanuel Goh](http://github.com/emman27)
