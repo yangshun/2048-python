@@ -17,3 +17,4 @@ Contributors:
 
 - [Yanghun Tay](http://github.com/yangshun)
 - [Emmanuel Goh](http://github.com/emman27)
+Beautifully executed the code and implemented the idea 
