@@ -6,10 +6,11 @@
 # Note that written answers are commented out to allow us to run your
 # code easily while grading your problem set.
 import random
+
 import constants as c
 
 #######
-#Task 1a#
+# Task 1a #
 #######
 
 # [Marking Scheme]
@@ -20,9 +21,11 @@ import constants as c
 
 def new_game(n):
     matrix = []
-
     for i in range(n):
         matrix.append([0] * n)
+
+    matrix = add_two(matrix)
+    matrix = add_two(matrix)
     return matrix
 
 ###########
@@ -38,7 +41,7 @@ def new_game(n):
 def add_two(mat):
     a = random.randint(0, len(mat)-1)
     b = random.randint(0, len(mat)-1)
-    while(mat[a][b] != 0):
+    while mat[a][b] != 0:
         a = random.randint(0, len(mat)-1)
         b = random.randint(0, len(mat)-1)
     mat[a][b] = 2
@@ -148,7 +151,7 @@ def cover_up(mat):
                 if j != count:
                     done = True
                 count += 1
-    return (new, done)
+    return new, done
 
 
 def merge(mat):
@@ -159,7 +162,7 @@ def merge(mat):
                 mat[i][j] *= 2
                 mat[i][j+1] = 0
                 done = True
-    return (mat, done)
+    return mat, done
 
 
 def up(game):
@@ -172,7 +175,7 @@ def up(game):
     done = done or temp[1]
     game = cover_up(game)[0]
     game = transpose(game)
-    return (game, done)
+    return game, done
 
 
 def down(game):
@@ -184,7 +187,7 @@ def down(game):
     done = done or temp[1]
     game = cover_up(game)[0]
     game = transpose(reverse(game))
-    return (game, done)
+    return game, done
 
 
 def left(game):
@@ -195,7 +198,7 @@ def left(game):
     game = temp[0]
     done = done or temp[1]
     game = cover_up(game)[0]
-    return (game, done)
+    return game, done
 
 
 def right(game):
@@ -208,4 +211,4 @@ def right(game):
     done = done or temp[1]
     game = cover_up(game)[0]
     game = reverse(game)
-    return (game, done)
+    return game, done
