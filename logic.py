@@ -61,19 +61,22 @@ def add_two(mat):
 
 
 def game_state(mat):
+    # check for win cell
     for i in range(len(mat)):
         for j in range(len(mat[0])):
             if mat[i][j] == 2048:
                 return 'win'
+    # check for any zero entries
+    for i in range(len(mat)):
+        for j in range(len(mat[0])):
+            if mat[i][j] == 0:
+                return 'not over'
+    # check for same cells that touch each other
     for i in range(len(mat)-1):
         # intentionally reduced to check the row on the right and below
         # more elegant to use exceptions but most likely this will be their solution
         for j in range(len(mat[0])-1):
             if mat[i][j] == mat[i+1][j] or mat[i][j+1] == mat[i][j]:
-                return 'not over'
-    for i in range(len(mat)):  # check for any zero entries
-        for j in range(len(mat[0])):
-            if mat[i][j] == 0:
                 return 'not over'
     for k in range(len(mat)-1):  # to check the left/right entries on the last row
         if mat[len(mat)-1][k] == mat[len(mat)-1][k+1]:
