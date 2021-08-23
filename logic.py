@@ -24,8 +24,8 @@ def new_game(n):
     for i in range(n):
         matrix.append([0] * n)
 
-    matrix = add_two(matrix)
-    matrix = add_two(matrix)
+    matrix = add_number(matrix)
+    matrix = add_number(matrix)
     return matrix
 
 ###########
@@ -37,14 +37,24 @@ def new_game(n):
 # Must ensure that it is created on a zero entry
 # 1 mark for creating the correct loop
 
-
-def add_two(mat):
-    a = random.randint(0, len(mat)-1)
-    b = random.randint(0, len(mat)-1)
-    while mat[a][b] != 0:
+#The function changed to support the randomly insertion of the number 4
+def add_number(mat):
+    prob = random.random()
+    if prob <= 0.1:
         a = random.randint(0, len(mat)-1)
         b = random.randint(0, len(mat)-1)
-    mat[a][b] = 2
+        while mat[a][b] != 0:
+            a = random.randint(0, len(mat)-1)
+            b = random.randint(0, len(mat)-1)
+        mat[a][b] = 4
+    else:
+        a = random.randint(0, len(mat)-1)
+        b = random.randint(0, len(mat)-1)
+        while mat[a][b] != 0:
+            a = random.randint(0, len(mat)-1)
+            b = random.randint(0, len(mat)-1)
+        mat[a][b] = 2
+    
     return mat
 
 ###########
@@ -168,7 +178,7 @@ def merge(mat, done):
 
 
 def up(game):
-    print("up")
+    #print("up")
     # return matrix after shifting up
     game = transpose(game)
     game, done = cover_up(game)
@@ -179,7 +189,7 @@ def up(game):
 
 
 def down(game):
-    print("down")
+    #print("down")
     game = reverse(transpose(game))
     game, done = cover_up(game)
     game, done = merge(game, done)
@@ -189,7 +199,7 @@ def down(game):
 
 
 def left(game):
-    print("left")
+    #print("left")
     # return matrix after shifting left
     game, done = cover_up(game)
     game, done = merge(game, done)
@@ -198,7 +208,7 @@ def left(game):
 
 
 def right(game):
-    print("right")
+    #print("right")
     # return matrix after shifting right
     game = reverse(game)
     game, done = cover_up(game)
