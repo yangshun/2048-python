@@ -2,15 +2,13 @@ from tkinter import Frame, Label, CENTER, Button
 import tkinter as tk
 import random
 
+
 import helper
 import logic
 import constants as c
 
-
 def gen():
     return random.randint(0, c.GRID_LEN - 1)
-
-
 
 
 class GameGrid(Frame):
@@ -33,6 +31,7 @@ class GameGrid(Frame):
 
        
         
+
 
         self.commands = {c.KEY_UP: logic.up, c.KEY_DOWN: logic.down,
                          c.KEY_LEFT: logic.left, c.KEY_RIGHT: logic.right,
@@ -76,22 +75,34 @@ class GameGrid(Frame):
                            width=c.SIZE, height=c.SIZE)
         
         
+
         background.grid()
 
         for i in range(c.GRID_LEN):
             grid_row = []
             for j in range(c.GRID_LEN):
-                cell = Frame(background, bg=c.BACKGROUND_COLOR_CELL_EMPTY,
-                             width=c.SIZE / c.GRID_LEN,
-                             height=c.SIZE / c.GRID_LEN)
-                cell.grid(row=i, column=j, padx=c.GRID_PADDING,
-                          pady=c.GRID_PADDING)
-                t = Label(master=cell, text="",
-                          bg=c.BACKGROUND_COLOR_CELL_EMPTY,
-                          justify=CENTER, font=c.FONT, width=5, height=2)
+                cell = Frame(
+                    background,
+                    bg=c.BACKGROUND_COLOR_CELL_EMPTY,
+                    width=c.SIZE / c.GRID_LEN,
+                    height=c.SIZE / c.GRID_LEN
+                )
+                cell.grid(
+                    row=i,
+                    column=j,
+                    padx=c.GRID_PADDING,
+                    pady=c.GRID_PADDING
+                )
+                t = Label(
+                    master=cell,
+                    text="",
+                    bg=c.BACKGROUND_COLOR_CELL_EMPTY,
+                    justify=CENTER,
+                    font=c.FONT,
+                    width=5,
+                    height=2)
                 t.grid()
                 grid_row.append(t)
-
             self.grid_cells.append(grid_row)
 
     def update_grid_cells(self):
@@ -99,20 +110,25 @@ class GameGrid(Frame):
             for j in range(c.GRID_LEN):
                 new_number = self.matrix[i][j]
                 if new_number == 0:
-                    self.grid_cells[i][j].configure(text="", bg=c.BACKGROUND_COLOR_CELL_EMPTY)
+                    self.grid_cells[i][j].configure(text="",bg=c.BACKGROUND_COLOR_CELL_EMPTY)
                 else:
-                    self.grid_cells[i][j].configure(text=str(new_number), bg=c.BACKGROUND_COLOR_DICT[new_number],
-                                                    fg=c.CELL_COLOR_DICT[new_number])
+                    self.grid_cells[i][j].configure(
+                        text=str(new_number),
+                        bg=c.BACKGROUND_COLOR_DICT[new_number],
+                        fg=c.CELL_COLOR_DICT[new_number]
+                    )
         self.update_idletasks()
 
     def key_down(self, event):
-        key = repr(event.char)
+        key = event.keysym
+        print(event)
+        if key == c.KEY_QUIT: exit()
         if key == c.KEY_BACK and len(self.history_matrixs) > 1:
             self.matrix = self.history_matrixs.pop()
             self.update_grid_cells()
             print('back on step total step:', len(self.history_matrixs))
         elif key in self.commands:
-            self.matrix, done = self.commands[repr(event.char)](self.matrix)
+            self.matrix, done = self.commands[key](self.matrix)
             if done:
                 self.matrix = logic.add_number(self.matrix)
                 # record last move
